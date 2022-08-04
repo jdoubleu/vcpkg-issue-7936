@@ -1,0 +1,17 @@
+stages:
+  - build
+
+cache:
+  key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
+  paths:
+    - build/
+
+build-msvc:
+  stage: build
+  tags:
+    - msvc
+    - vcpkg
+    - cmake
+  script:
+    - cmake -B build/ -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE="${ENV:VCPKG_ROOT}\scripts\buildsystems\vcpkg.cmake" -DCMAKE_BUILD_TYPE=Release
+    - cmake --build build/ --target ALL_BUILD --parallel
