@@ -6,4 +6,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(Protobuf_USE_STATIC_LIBS ON)
 find_package(Protobuf REQUIRED)
 
-add_executable(vcpkg_issue_7936 main.cpp)
+
+protobuf_generate_cpp(addressbook_SRCS addressbook_HDRS
+        addressbook.proto)
+
+add_executable(${PROJECT_NAME}
+        ${addressbook_SRCS}
+        ${addressbook_HDRS}
+        main.cpp)
+target_include_directories(${PROJECT_NAME} PRIVATE
+        ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        protobuf::libprotobuf)
