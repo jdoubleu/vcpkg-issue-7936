@@ -5,7 +5,8 @@ jobs:
   build-msvc:
     runs-on: windows-latest
     env:
-      VCPKG_DEFAULT_TRIPLET: "x64-windows"
+      VCPKG_DEFAULT_TRIPLET: "x64-windows-static"
+      VCPKG_OVERLAY_TRIPLETS: "$(pwd)/triplets"
     steps:
       - uses: actions/checkout@v2
         with:
