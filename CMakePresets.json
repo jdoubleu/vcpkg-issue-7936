@@ -1,0 +1,32 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "Visual Studio Build",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}/build",
+            "toolchainFile": "${sourceDir}\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+            "cacheVariables": {
+                "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/triplets/",
+                "VCPKG_TARGET_TRIPLET": "x64-windows-static"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        }
+    ]
+}
