@@ -1,6 +1,9 @@
 stages:
   - build
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 cache:
   key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
   paths:
